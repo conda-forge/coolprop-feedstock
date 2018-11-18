@@ -1,6 +1,6 @@
 {% set name = "CoolProp" %}
-{% set version = "6.0.0" %}
-{% set sha256 = "f3c8b57a2f5cd6dc4816623a460defe3bdc0639bd1f709c2cfeb5776486d4ba3" %}
+{% set version = "6.2.0" %}
+{% set sha256 = "55d4693c4bab911ac086d11366d8b42550ccb718e09eecf9adf1937c125bf066" %}
 
 package:
   name: {{ name|lower }}
