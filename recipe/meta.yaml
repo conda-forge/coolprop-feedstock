@@ -12,8 +12,9 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  number: 1000
+  script: "python -m pip install --no-deps --ignore-installed ."
+  skip: true  # [py>36]
 
 requirements:
   build:
