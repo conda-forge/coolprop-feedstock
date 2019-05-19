@@ -1,7 +1,7 @@
 {% set name = "CoolProp" %}
 
-{% set version = "6.2.1" %}
-{% set sha256 = "d5b85af023ffc93d3f85770dee571712f3858f72579e89a7d13b2f796d933732" %}
+{% set version = "6.3.0" %}
+{% set sha256 = "8570111c5a2993233b4f7ec13758be7b207fa2bc12254d42f6e128d2a24b55be" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1000
+  number: 0
   script: "python -m pip install --no-deps --ignore-installed ."
   skip: true  # [py>36]
 
