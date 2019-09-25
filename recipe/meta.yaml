@@ -14,7 +14,7 @@ source:
 build:
   number: 1001
   script: "python -m pip install --no-deps --ignore-installed ."
-  skip: true  # [py>36]
+  skip: true  # [py<34 and py>36]
 
 requirements:
   build:
