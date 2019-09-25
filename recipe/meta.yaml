@@ -12,9 +12,9 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1000
+  number: 1001
   script: "python -m pip install --no-deps --ignore-installed ."
-  skip: true  # [py>36]
+  skip: true  # [py<34 or py>36]
 
 requirements:
   build:
@@ -26,7 +26,7 @@ requirements:
   run:
     - python
     - numpy
-    - matplotlib
+    - matplotlib-base
 
 test:
   imports:
