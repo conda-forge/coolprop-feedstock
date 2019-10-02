@@ -7,7 +7,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
  
 -set(Python_ADDITIONAL_VERSIONS 2.7 2.6 2.5 2.4)
 -find_package (PythonInterp 2.7 REQUIRED)
-+include(FindPythonAnaconda)
++find_package (PythonAnaconda REQUIRED)
  if(CMAKE_DL_LIBS)
      find_package (${CMAKE_DL_LIBS} REQUIRED)
  endif()

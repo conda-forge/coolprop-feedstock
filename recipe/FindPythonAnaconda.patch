@@ -6,7 +6,7 @@ diff --git a/dev/cmake/Modules/FindPythonAnaconda.cmake b/dev/cmake/Modules/Find
 +# handle anaconda dependencies
 +cmake_minimum_required(VERSION 3.7)
 +
-+option(ANACONDA_PYTHON_VERBOSE "Anaconda dependency info" OFF)
++option(ANACONDA_PYTHON_VERBOSE "Anaconda dependency info" ON)
 +
 +if(NOT CMAKE_FIND_ANACONDA_PYTHON_INCLUDED)
 +  set(CMAKE_FIND_ANACONDA_PYTHON_INCLUDED 1)
