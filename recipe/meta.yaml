@@ -1,5 +1,6 @@
 {% set name = "CoolProp" %}
 
+# WARNING external resources may need update as well
 {% set version = "6.2.1" %}
 {% set sha256 = "e94a65e5bbf150e4010816160f66b2095dc70b598461bb1fa664bb5791922c93" %}
 
@@ -11,20 +12,32 @@ source:
   - url: https://github.com/CoolProp/{{ name }}/archive/v{{ version }}.tar.gz
     sha256: {{ sha256 }}
     patches:
-      - FindPythonAnaconda.patch
       - CMakeLists.patch
+  # External dependencies
   - url: https://github.com/catchorg/Catch2/archive/v1.12.2.tar.gz
     sha256: 27bf01d20692e534a8963f96c6ca797df2b4ba6551db0379510c376558d75e3c
     folder: externals/Catch
   - url: https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz
     sha256: 992855522dfdd0dea74d903dcd082cdb01c1ae72be5145e2fe646a0892989e43
     folder: externals/Eigen
-  - url: https://github.com/msgpack/msgpack-c/archive/cpp-3.0.1.tar.gz
-    sha256: 1b834ab0b5b41da1dbfb96dd4a673f6de7e79dbd7f212f45a553ff9cc54abf3b
-    folder: externals/msgpack-c
+  - url: https://github.com/CoolProp/IF97/archive/7108b0394d9b1e19d3f5ce0b9aeab02d41391daf.zip
+    sha256: d761daa6570b6e6ae9cf01554b845d22ae9d3d58f12f658d3670ed3a28fa888b
+    folder: externals/IF97
+  - url: https://github.com/CoolProp/REFPROP-headers/archive/5fccb00f750c93644a1b32d631b020bebf073eff.zip
+    sha256: 83de4a949ffaf16257c12b2edf72f6fd62cb7babdfa4d578fe17e341c9712b94
+    folder: externals/REFPROP-headers
   - url: https://github.com/fmtlib/fmt/archive/4.1.0.tar.gz
     sha256: 46628a2f068d0e33c716be0ed9dcae4370242df135aed663a180b9fd8e36733d
     folder: externals/fmtlib
+  - url: https://github.com/msgpack/msgpack-c/archive/cpp-3.0.1.tar.gz
+    sha256: 1b834ab0b5b41da1dbfb96dd4a673f6de7e79dbd7f212f45a553ff9cc54abf3b
+    folder: externals/msgpack-c
+  - url: https://github.com/pybind/pybind11/archive/v2.2.3.tar.gz
+    sha256: 3a3b7b651afab1c5ba557f4c37d785a522b8030dfc765da26adc2ecd1de940ea
+    folder: externals/pybind11
+  - url: https://github.com/Tencent/rapidjson/archive/73063f5002612c6bf64fe24f851cd5cc0d83eef9.zip
+    sha256: 013edcc40afd7a550899e443ac70bc16b6a36867393be50f1def35674e2be08c
+    folder: externals/rapidjson
 
 build:
   number: 1002
@@ -34,10 +47,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
-    - cython
   host:
     - python
-    - pip
+    - cython
   run:
     - python
     - numpy
