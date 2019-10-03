@@ -14,6 +14,7 @@ source:
     patches:
       - CMakeLists.patch
   # External dependencies
+  # See https://github.com/CoolProp/CoolProp/tree/master/externals
   - url: https://github.com/catchorg/Catch2/archive/v1.12.2.tar.gz
     sha256: 27bf01d20692e534a8963f96c6ca797df2b4ba6551db0379510c376558d75e3c
     folder: externals/Catch
@@ -50,6 +51,7 @@ requirements:
   host:
     - python
     - cython
+    - setuptools
   run:
     - python
     - numpy
