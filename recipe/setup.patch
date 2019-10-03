@@ -1,0 +1,45 @@
+diff --git a/wrappers/Python/setup.py b/wrappers/Python/setup.py
+--- a/wrappers/Python/setup.py
++++ b/wrappers/Python/setup.py
+@@ -48,14 +48,6 @@ if __name__=='__main__':
+ 
+     # Trying to change the standard library for C++
+     import platform
+-    try:
+-        macVersion = platform.mac_ver()[0].split('.')
+-        if int(macVersion[0]) >= 10 and int(macVersion[1]) > 8:
+-            os.environ["CC"] = "gcc"
+-            os.environ["CXX"] = "g++"
+-            print('switching compiler to g++ for OSX')
+-    except:
+-        pass
+ 
+     # ******************************
+     #       CMAKE OPTIONS
+@@ -110,7 +110,7 @@ if __name__=='__main__':
+             if cmake_bitness == '32':
+                 cmake_config_args += ['-G','"Visual Studio 9 2008"']
+             elif cmake_bitness == '64':
+-                cmake_config_args += ['-G','"Visual Studio 9 2008 Win64"']
++                cmake_config_args += ['-G','"NMake Makefiles"']
+             else:
+                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
+         elif cmake_compiler == 'vc10':
+@@ -126,7 +126,7 @@ if __name__=='__main__':
+             if cmake_bitness == '32':
+                 cmake_config_args += ['-G','"Visual Studio 14 2015"']
+             elif cmake_bitness == '64':
+-                cmake_config_args += ['-G','"Visual Studio 14 2015 Win64"']
++                cmake_config_args += ['-G','"NMake Makefiles"']
+             else:
+                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
+         elif cmake_compiler == 'mingw':
+@@ -169,7 +169,7 @@ if __name__=='__main__':
+ 
+         # Now find the static library that we just built
+         static_libs = []
+-        for search_suffix in ['Release/*.lib','Release/*.a', 'Debug/*.lib', 'Debug/*.a','*.a']:
++        for search_suffix in ['Release/*.lib','Release/*.a', 'Debug/*.lib', 'Debug/*.a', '*.a', '*.lib']:
+             static_libs += glob.glob(os.path.join(cmake_build_dir,search_suffix))
+ 
+         if len(static_libs) != 1:

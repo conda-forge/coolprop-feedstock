@@ -12,6 +12,7 @@ source:
   - url: https://github.com/CoolProp/{{ name }}/archive/v{{ version }}.tar.gz
     sha256: {{ sha256 }}
     patches:
+      - setup.patch
       - CMakeLists.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
@@ -61,7 +62,7 @@ test:
   imports:
     - CoolProp
     - CoolProp.tests
-    - CoolProp.Plots
+    - CoolProp.Plots  # [not py2k or not linux]
     - CoolProp.GUI
 
 about:
