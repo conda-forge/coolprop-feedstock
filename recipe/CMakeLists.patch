@@ -1,7 +1,7 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -206,8 +206,8 @@ set(COOLPROP_INCLUDE_DIRECTORIES ${APP_INCLUDE_DIRS} CACHE LIST "List of include
+@@ -259,8 +259,8 @@ set(COOLPROP_INCLUDE_DIRECTORIES ${APP_INCLUDE_DIRS} CACHE LIST "List of include
  #######################################
  set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/dev/cmake/Modules/")
  
