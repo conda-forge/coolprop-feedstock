@@ -1,8 +1,8 @@
 {% set name = "CoolProp" %}
 
 # WARNING external resources may need update as well
-{% set version = "6.3.0" %}
-{% set sha256 = "53eaec3aad40506e08d1c98fa0a1082afeb399c50c30b54c1ff8fd606c073605" %}
+{% set version = "6.4.0" %}
+{% set sha256 = "a4adbfe27d0c14544f5b010364322d915c57de9a1b6709c05f573535c0724cde" %}
 
 package:
   name: {{ name|lower }}
@@ -42,7 +42,7 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -70,7 +70,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Open-source thermodynamic and transport properties database'
+  summary: Open-source thermodynamic and transport properties database
 
   description: |
     Open-source thermodynamic and transport properties database
