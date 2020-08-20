@@ -22,8 +22,8 @@ source:
   - url: https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz
     sha256: 992855522dfdd0dea74d903dcd082cdb01c1ae72be5145e2fe646a0892989e43
     folder: externals/Eigen
-  - url: https://github.com/CoolProp/IF97/archive/7108b0394d9b1e19d3f5ce0b9aeab02d41391daf.zip
-    sha256: d761daa6570b6e6ae9cf01554b845d22ae9d3d58f12f658d3670ed3a28fa888b
+  - url: https://github.com/CoolProp/IF97/archive/c9b34e0da8dcda9d4b60be5d20e7c3200bc0b169.zip
+    sha256: da5be718b9e331c221d88e0d5b4662c49e08acd44e6be9ce7f3eb1bb7d2c3238
     folder: externals/IF97
   - url: https://github.com/CoolProp/REFPROP-headers/archive/8df35c7cb557d385bb66431e92e836104a63a33c.zip
     sha256: 2c3c8759351f8dcde4fac92fa1501fadcd23c01f4d91d80f89ab67ce6c025e3d
@@ -42,7 +42,7 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
