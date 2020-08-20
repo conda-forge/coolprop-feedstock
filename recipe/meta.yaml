@@ -13,6 +13,7 @@ source:
     sha256: {{ sha256 }}
     patches:
       - setup.patch
+      - CMakeLists.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
   - url: https://github.com/catchorg/Catch2/archive/v1.12.2.tar.gz
