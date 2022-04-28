@@ -1,5 +1,13 @@
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
+@@ -1,6 +1,6 @@
+ from __future__ import print_function
+ import platform
+-import subprocess, shutil, os, sys, glob, tempfile
++import subprocess, shlex, shutil, os, sys, glob, tempfile
+ from distutils.version import LooseVersion
+ from distutils.sysconfig import get_config_var
+ from setuptools.command.build_ext import build_ext
 @@ -48,47 +48,6 @@
  
  if __name__ == '__main__':
@@ -48,6 +56,15 @@
      # ******************************
      #       CMAKE OPTIONS
      # ******************************
+@@ -122,7 +81,7 @@
+ 
+     USING_CMAKE = cmake_compiler or cmake_bitness
+ 
+-    cmake_config_args = []
++    cmake_config_args = shlex.split(os.environ.get("CMAKE_ARGS", ""))
+ 
+     STATIC_LIBRARY_BUILT = False
+     if USING_CMAKE:
 @@ -142,7 +101,7 @@
              if cmake_bitness == '32':
                  cmake_config_args += ['-G', '"Visual Studio 9 2008"']
