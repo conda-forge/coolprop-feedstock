@@ -1,13 +1,5 @@
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
-@@ -1,6 +1,6 @@
- from __future__ import print_function
- import platform
--import subprocess, shutil, os, sys, glob, tempfile
-+import subprocess, shlex, shutil, os, sys, glob, tempfile
- from distutils.version import LooseVersion
- from distutils.sysconfig import get_config_var
- from setuptools.command.build_ext import build_ext
 @@ -48,47 +48,6 @@
  
  if __name__ == '__main__':
@@ -101,20 +93,6 @@
                  cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              elif cmake_bitness == 'any':
                  pass
-@@ -209,11 +168,11 @@
-         if not os.path.exists(cmake_build_dir):
-             os.makedirs(cmake_build_dir)
- 
--        cmake_call_string = ' '.join(['cmake', '../../../..', '-DCOOLPROP_STATIC_LIBRARY=ON', '-DCMAKE_VERBOSE_MAKEFILE=ON', '-DCMAKE_BUILD_TYPE=Release'] + cmake_config_args)
-+        cmake_call_string = ' '.join(['cmake', '../../../..', '-DCOOLPROP_STATIC_LIBRARY=ON', '-DCMAKE_VERBOSE_MAKEFILE=ON', '-DCMAKE_BUILD_TYPE=Release'] + cmake_config_args + ["" if sys.platform.startswith('win') else  "${CMAKE_ARGS}"])
-         print('calling: ' + cmake_call_string)
-         subprocess.check_call(cmake_call_string, shell=True, stdout=sys.stdout, stderr=sys.stderr, cwd=cmake_build_dir)
- 
--        cmake_build_string = ' '.join(['cmake', '--build', '.'] + cmake_build_args)
-+        cmake_build_string = ' '.join(['cmake', '--build', '.'] + cmake_build_args)  # shlex.split(os.environ.get("CMAKE_ARGS", "")))
-         print('calling: ' + cmake_build_string)
-         subprocess.check_call(cmake_build_string, shell=True, stdout=sys.stdout, stderr=sys.stderr, cwd=cmake_build_dir)
- 
 @@ -215,7 +174,7 @@
  
          # Now find the static library that we just built
