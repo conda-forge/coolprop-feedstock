@@ -42,13 +42,18 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 3
+  number: 5
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - cython                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
+    - make   # [not win]
+    - ninja  # [win]
   host:
     - python
     - cython
