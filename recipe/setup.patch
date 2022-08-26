@@ -75,7 +75,7 @@
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
          elif cmake_compiler == 'vc15':
-@@ -166,7 +125,11 @@
+@@ -166,7 +125,10 @@
              if cmake_bitness == '32':
                  cmake_config_args += ['-G', '"Visual Studio 15 2017"']
              elif cmake_bitness == '64':
@@ -83,12 +83,11 @@
 +                cmake_config_args += ['-G', '"NMake Makefiles"']
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-+        elif cmake_compiler == 'vc16':
-+            cmake_build_args = ['--config', '"Release"', '-G', '"NMake Makefiles"']
-+        elif cmake_compiler == 'vc17':
-+            cmake_build_args = ['--config', '"Release"', '-G', '"NMake Makefiles"']
++        elif cmake_compiler.startswith('vc') and len(cmake_compiler) == 4:
++            cmake_build_args = ['--config', '"Release"']
++            cmake_config_args += ['-G', '"NMake Makefiles"']
          elif cmake_compiler == 'mingw':
-@@ -183,7 +146,7 @@
+@@ -183,7 +145,7 @@
                  cmake_build_args = ['--config', '"Release"']
              if cmake_bitness == '32':
                  cmake_config_args += ['-DFORCE_BITNESS_32=ON']
@@ -97,7 +96,7 @@
                  cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              elif cmake_bitness == 'any':
                  pass
-@@ -215,7 +178,7 @@
+@@ -215,7 +177,7 @@
  
          # Now find the static library that we just built
          static_libs = []
