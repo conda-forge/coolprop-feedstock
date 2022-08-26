@@ -83,10 +83,10 @@
 +                cmake_config_args += ['-G', '"NMake Makefiles"']
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-+         elif cmake_compiler == 'vc16':
-+             cmake_build_args = ['--config', '"Release"', '-G', '"NMake Makefiles"']
-+         elif cmake_compiler == 'vc17':
-+             cmake_build_args = ['--config', '"Release"', '-G', '"NMake Makefiles"']
++        elif cmake_compiler == 'vc16':
++            cmake_build_args = ['--config', '"Release"', '-G', '"NMake Makefiles"']
++        elif cmake_compiler == 'vc17':
++            cmake_build_args = ['--config', '"Release"', '-G', '"NMake Makefiles"']
          elif cmake_compiler == 'mingw':
 @@ -183,7 +146,7 @@
                  cmake_build_args = ['--config', '"Release"']
