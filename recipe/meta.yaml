@@ -43,6 +43,8 @@ source:
 
 build:
   number: 7
+  # x64 OSX is actually overriding the assets from PyPI.org wheel
+  skip: True # [osx and not arm64]
 
 requirements:
   build:
