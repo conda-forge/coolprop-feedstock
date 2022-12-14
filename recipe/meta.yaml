@@ -1,8 +1,8 @@
 {% set name = "CoolProp" %}
 
 # WARNING external resources may need update as well
-{% set version = "6.4.1" %}
-{% set sha256 = "19b4f359143e3ce648582ebba171930359b86f6c8e026586b1020227e9b73980" %}
+{% set version = "6.4.2" %}
+{% set sha256 = "fd202a9d5623c7cb7b8d08ca2694e7754ec00ae585610225fba7707ee743f84a" %}
 
 package:
   name: {{ name|lower }}
@@ -42,9 +42,9 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 7
+  number: 0
   # x64 OSX is actually overriding the assets from PyPI.org wheel
-  skip: True  # [osx and x86_64]
+  skip: true  # [osx and x86_64]
 
 requirements:
   build:
