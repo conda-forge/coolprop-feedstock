@@ -59,7 +59,7 @@ requirements:
     - ninja  # [win]
   host:
     - python
-    - cython
+    - cython <3
     - setuptools
   run:
     - python
