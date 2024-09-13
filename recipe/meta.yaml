@@ -11,6 +11,8 @@ package:
 source:
   - url: https://github.com/CoolProp/{{ name }}/archive/v{{ version }}.tar.gz
     sha256: {{ sha256 }}
+    patches:
+      - setup.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
   - url: https://github.com/catchorg/Catch2/archive/v3.0.0-preview4.tar.gz
