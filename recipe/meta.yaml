@@ -43,13 +43,16 @@ source:
 build:
   number: 0
   # x64 OSX is actually overriding the assets from PyPI.org wheel
-  skip: true  # [osx and x86_64]
+  # pypy is not passing and we don't want to support it
+  skip: true  # [osx or python_impl == 'pypy']
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - cython                                 # [build_platform != target_platform]
+    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - cmake
     - make   # [not win]
