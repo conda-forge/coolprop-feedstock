@@ -1,64 +1,18 @@
 diff --git a/wrappers/Python/setup.py b/wrappers/Python/setup.py
-index 5c339c09..dde91bd2 100644
+index 5c339c09..61f9d663 100644
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
-@@ -153,7 +153,7 @@ if __name__ == '__main__':
-             if cmake_bitness == '32':
-                 cmake_config_args += ['-G', '"Visual Studio 9 2008"']
-             elif cmake_bitness == '64':
--                cmake_config_args += ['-G', '"Visual Studio 9 2008 Win64"']
-+                cmake_config_args += ['-G', '"NMake Makefiles"']
+@@ -208,6 +208,9 @@ if __name__ == '__main__':
+                 cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-         elif cmake_compiler == 'vc10':
-@@ -161,7 +161,7 @@ if __name__ == '__main__':
-             if cmake_bitness == '32':
-                 cmake_config_args += ['-G', '"Visual Studio 10 2010"']
-             elif cmake_bitness == '64':
--                cmake_config_args += ['-G', '"Visual Studio 10 2010 Win64"']
-+                cmake_config_args += ['-G', '"NMake Makefiles"']
-             else:
-                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-         elif cmake_compiler == 'vc14':
-@@ -169,7 +169,7 @@ if __name__ == '__main__':
-             if cmake_bitness == '32':
-                 cmake_config_args += ['-G', '"Visual Studio 14 2015"']
-             elif cmake_bitness == '64':
--                cmake_config_args += ['-G', '"Visual Studio 14 2015 Win64"']
-+                cmake_config_args += ['-G', '"NMake Makefiles"']
-             else:
-                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-         elif cmake_compiler == 'vc15':
-@@ -177,7 +177,7 @@ if __name__ == '__main__':
-             if cmake_bitness == '32':
-                 cmake_config_args += ['-G', '"Visual Studio 15 2017"']
-             elif cmake_bitness == '64':
--                cmake_config_args += ['-G', '"Visual Studio 15 2017 Win64"']
-+                cmake_config_args += ['-G', '"NMake Makefiles"']
-             else:
-                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-         elif cmake_compiler == 'vc16':
-@@ -186,8 +186,7 @@ if __name__ == '__main__':
-                 cmake_config_args += ['-G', '"Visual Studio 16 2019"', '-A',
-                                       'x86']
-             elif cmake_bitness == '64':
--                cmake_config_args += ['-G', '"Visual Studio 16 2019"', '-A',
--                                      'x64']
-+                cmake_config_args += ['-G', '"NMake Makefiles"']
-             else:
-                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-         elif cmake_compiler == 'vc17':
-@@ -196,8 +195,7 @@ if __name__ == '__main__':
-                 cmake_config_args += ['-G', '"Visual Studio 17 2022"', '-A',
-                                       'x86']
-             elif cmake_bitness == '64':
--                cmake_config_args += ['-G', '"Visual Studio 17 2022"', '-A',
--                                      'x64']
-+                cmake_config_args += ['-G', '"NMake Makefiles"']
-             else:
-                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-         elif cmake_compiler == 'mingw':
-@@ -256,7 +254,7 @@ if __name__ == '__main__':
++        elif cmake_compiler == 'nmake':
++            cmake_build_args = ['--config', '"Release"']
++            cmake_config_args += ['-G', '"NMake Makefiles"']
+         elif cmake_compiler == 'default':
+             cmake_config_args = []
+             if sys.platform.startswith('win'):
+@@ -256,7 +259,7 @@ if __name__ == '__main__':
  
          # Now find the static library that we just built
          static_libs = []
