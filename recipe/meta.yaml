@@ -41,10 +41,9 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 0
-  # x64 OSX is actually overriding the assets from PyPI.org wheel
+  number: 1
   # pypy is not passing and we don't want to support it
-  skip: true  # [osx or python_impl == 'pypy']
+  skip: true  # [python_impl == 'pypy']
 
 requirements:
   build:
