@@ -1,5 +1,5 @@
 diff --git a/wrappers/Python/setup.py b/wrappers/Python/setup.py
-index 5c339c09..61f9d663 100644
+index 5c339c09..3af22a5c 100644
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
 @@ -208,6 +208,9 @@ if __name__ == '__main__':
@@ -12,6 +12,15 @@ index 5c339c09..61f9d663 100644
          elif cmake_compiler == 'default':
              cmake_config_args = []
              if sys.platform.startswith('win'):
+@@ -218,7 +221,7 @@ if __name__ == '__main__':
+                 cmake_config_args += ['-DFORCE_BITNESS_64=ON']
+             elif cmake_bitness == 'NATIVE':
+                 cmake_config_args += ['-DFORCE_BITNESS_NATIVE=ON']
+-            elif cmake_bitness == 'any':
++            elif cmake_bitness in ['any', 'arm64']:
+                 pass
+             else:
+                 raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
 @@ -256,7 +259,7 @@ if __name__ == '__main__':
  
          # Now find the static library that we just built
