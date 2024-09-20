@@ -43,7 +43,7 @@ source:
 build:
   number: 2
   # pypy is not passing and we don't want to support it
-  skip: true  # [python_impl == 'pypy']
+  skip: true  # [python_impl == 'pypy' or (py>312 and osx and not arm64)]
 
 requirements:
   build:
