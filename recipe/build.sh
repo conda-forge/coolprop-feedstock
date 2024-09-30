@@ -1,2 +1,2 @@
 cd wrappers/Python
-"$PYTHON" setup.py install cmake=default,$ARCH
+$PYTHON -m pip install -vv --no-deps --ignore-installed .

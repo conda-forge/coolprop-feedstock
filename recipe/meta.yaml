@@ -41,9 +41,9 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 2
+  number: 3
   # pypy is not passing and we don't want to support it
-  skip: true  # [python_impl == 'pypy' or (py>312 and osx and not arm64)]
+  skip: true  # [python_impl == 'pypy']
 
 requirements:
   build:
@@ -60,6 +60,7 @@ requirements:
     - python
     - cython
     - setuptools
+    - pip
   run:
     - python
     - numpy
