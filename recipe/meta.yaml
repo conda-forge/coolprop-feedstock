@@ -1,8 +1,8 @@
 {% set name = "CoolProp" %}
 
 # WARNING external resources may need update as well
-{% set version = "6.6.0" %}
-{% set sha256 = "20b94ca42ca5339641163b4a55e2affb95e1c9dcb1f6169a6970cd8fbfb63490" %}
+{% set version = "6.7.0" %}
+{% set sha256 = "7a014b74d95da8b00bc30e61546398fd6d5c7f65066a092fb15efb7b17d3b76c" %}
 
 package:
   name: {{ name|lower }}
@@ -41,7 +41,7 @@ source:
     folder: externals/rapidjson
 
 build:
-  number: 3
+  number: 0
   # pypy is not passing and we don't want to support it
   skip: true  # [python_impl == 'pypy']
 
