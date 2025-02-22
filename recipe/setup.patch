@@ -2,7 +2,7 @@ diff --git a/wrappers/Python/setup.py b/wrappers/Python/setup.py
 index 5c339c09..7a3e2a24 100644
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
-@@ -48,48 +48,6 @@ def recursive_collect_includes():
+@@ -56,48 +56,6 @@ def recursive_collect_includes():
  
  
  if __name__ == '__main__':
