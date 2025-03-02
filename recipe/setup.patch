@@ -2,7 +2,7 @@ diff --git a/wrappers/Python/setup.py b/wrappers/Python/setup.py
 index 5c339c09..7a3e2a24 100644
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
-@@ -48,48 +48,6 @@ def recursive_collect_includes():
+@@ -56,48 +56,6 @@ def recursive_collect_includes():
  
  
  if __name__ == '__main__':
@@ -15,13 +15,13 @@ index 5c339c09..7a3e2a24 100644
 -    # libstdc++ which forces is to manipulate the minimum OSX target
 -    # version when compiling the Cython extensions.
 -    if sys.platform == 'darwin':
--        osx_target = LooseVersion(get_config_var('MACOSX_DEPLOYMENT_TARGET'))
--        osx_compiler = LooseVersion('0.0')
--        osx_version = LooseVersion('0.0')
+-        osx_target = Version(get_config_var('MACOSX_DEPLOYMENT_TARGET'))
+-        osx_compiler = Version('0.0')
+-        osx_version = Version('0.0')
 -        FORCE_TARGET = None
 -        USE_OSX_VERSION = False
 -        if USE_OSX_VERSION:
--            osx_version = LooseVersion(platform.mac_ver()[0])
+-            osx_version = Version(platform.mac_ver()[0])
 -            print("OSX build detected, targetting {0} on {1}.".format(osx_target, osx_version))
 -        else:
 -            import subprocess
@@ -32,7 +32,7 @@ index 5c339c09..7a3e2a24 100644
 -                except AttributeError: pass
 -                line = line.strip()
 -                try:
--                    osx_compiler = LooseVersion(line)
+-                    osx_compiler = Version(line)
 -                    if osx_compiler > "1.0" and osx_compiler < "100.0": break
 -                except BaseException as be:
 -                    print('Error getting OSX compile version: ', str(be))
@@ -51,7 +51,7 @@ index 5c339c09..7a3e2a24 100644
      # ******************************
      #       CMAKE OPTIONS
      # ******************************
-@@ -208,6 +166,9 @@ if __name__ == '__main__':
+@@ -216,6 +174,9 @@ if __name__ == '__main__':
                  cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
@@ -61,7 +61,7 @@ index 5c339c09..7a3e2a24 100644
          elif cmake_compiler == 'default':
              cmake_config_args = []
              if sys.platform.startswith('win'):
-@@ -218,7 +179,7 @@ if __name__ == '__main__':
+@@ -226,7 +187,7 @@ if __name__ == '__main__':
                  cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              elif cmake_bitness == 'NATIVE':
                  cmake_config_args += ['-DFORCE_BITNESS_NATIVE=ON']
@@ -70,7 +70,7 @@ index 5c339c09..7a3e2a24 100644
                  pass
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-@@ -256,7 +217,7 @@ if __name__ == '__main__':
+@@ -264,7 +225,7 @@ if __name__ == '__main__':
  
          # Now find the static library that we just built
          static_libs = []
