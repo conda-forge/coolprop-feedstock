@@ -16,9 +16,6 @@ source:
       - eigen.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
-  - url: https://github.com/catchorg/Catch2/archive/v3.0.0-preview4.tar.gz
-    sha256: 2458d47d923b65ab611656cb7669d1810bcc4faa62e4c054a7405b1914cd4aee
-    folder: externals/Catch2
   - url: https://github.com/CoolProp/IF97/archive/a103894253ccd5144050eaeb8f7276379b9e5d9d.tar.gz
     sha256: 82af3e67fefaaa648d0a1550aac2f3c9dce054e7e0f28b3164ce6a30001f7938
     folder: externals/IF97
@@ -56,6 +53,7 @@ requirements:
     - cython
     - setuptools
     - pip
+    - catch2
     - eigen
   run:
     - python
