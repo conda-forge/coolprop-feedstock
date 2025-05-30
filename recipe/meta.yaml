@@ -17,7 +17,7 @@ source:
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
   - url: https://github.com/CoolProp/IF97/archive/3ddd548f87f55db921a490ae4facb36162497009.tar.gz
-    sha256: 82af3e67fefaaa648d0a1550aac2f3c9dce054e7e0f28b3164ce6a30001f7938
+    sha256: ba2ac3ffe69fc0045424eddc492b1a18041e45fefdcfaf6ea1f6ae9abc72cba8
     folder: externals/IF97
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
