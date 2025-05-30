@@ -14,6 +14,7 @@ source:
     patches:
       - setup.patch
       - eigen.patch
+      - fmt.patch
       - rapidjson.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
@@ -23,9 +24,6 @@ source:
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
     folder: externals/REFPROP-headers
-  - url: https://github.com/fmtlib/fmt/archive/10.0.0.tar.gz
-    sha256: ede1b6b42188163a3f2e0f25ad5c0637eca564bd8df74d02e31a311dd6b37ad8
-    folder: externals/fmtlib
   - url: https://github.com/msgpack/msgpack-c/archive/cpp-7.0.0.tar.gz
     sha256: 070881ebea9208cf7e731fd5a46a11404025b2f260ab9527e32dfcb7c689fbfc
     folder: externals/msgpack-c
@@ -53,6 +51,7 @@ requirements:
     - pip
     - catch2
     - eigen
+    - fmt =10.2.1
     - rapidjson
   run:
     - python
