@@ -13,8 +13,6 @@ source:
     sha256: {{ sha256 }}
     patches:
       - setup.patch
-      - eigen.patch
-      - fmt.patch
       - rapidjson.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
