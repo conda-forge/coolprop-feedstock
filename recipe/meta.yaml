@@ -24,9 +24,6 @@ source:
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
     folder: externals/REFPROP-headers
-  - url: https://github.com/msgpack/msgpack-c/archive/cpp-7.0.0.tar.gz
-    sha256: 070881ebea9208cf7e731fd5a46a11404025b2f260ab9527e32dfcb7c689fbfc
-    folder: externals/msgpack-c
 
 build:
   number: 2
@@ -52,6 +49,8 @@ requirements:
     - catch2
     - eigen
     - fmt =10.2.1
+    - msgpack-c
+    - msgpack-cxx
     - rapidjson
   run:
     - python
