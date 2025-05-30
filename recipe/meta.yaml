@@ -59,7 +59,7 @@ requirements:
     - cython
     - setuptools
     - pip
-    - fmt =10.2.0
+    - fmt =10.2.1
   run:
     - python
     - numpy
