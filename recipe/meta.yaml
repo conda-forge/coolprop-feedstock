@@ -14,6 +14,7 @@ source:
     patches:
       - setup.patch
       - eigen.patch
+      - rapidjson.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
   - url: https://github.com/CoolProp/IF97/archive/a103894253ccd5144050eaeb8f7276379b9e5d9d.tar.gz
@@ -28,9 +29,6 @@ source:
   - url: https://github.com/msgpack/msgpack-c/archive/cpp-7.0.0.tar.gz
     sha256: 070881ebea9208cf7e731fd5a46a11404025b2f260ab9527e32dfcb7c689fbfc
     folder: externals/msgpack-c
-  - url: https://github.com/Tencent/rapidjson/archive/73063f5002612c6bf64fe24f851cd5cc0d83eef9.zip
-    sha256: 013edcc40afd7a550899e443ac70bc16b6a36867393be50f1def35674e2be08c
-    folder: externals/rapidjson
 
 build:
   number: 2
@@ -55,6 +53,7 @@ requirements:
     - pip
     - catch2
     - eigen
+    - rapidjson
   run:
     - python
     - numpy
