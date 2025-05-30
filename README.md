@@ -304,4 +304,5 @@ Feedstock Maintainers
 
 * [@danilomendesdias](https://github.com/danilomendesdias/)
 * [@fcollonval](https://github.com/fcollonval/)
+* [@jan-janssen](https://github.com/jan-janssen/)
 

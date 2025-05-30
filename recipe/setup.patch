@@ -1,12 +1,29 @@
+From dcf6f58473cba4c3f4da0c14e3928a05d407338a Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Fri, 30 May 2025 11:38:32 +0200
+Subject: [PATCH] Update setup.py
+
+---
+ wrappers/Python/setup.py | 52 ++++++----------------------------------
+ 1 file changed, 7 insertions(+), 45 deletions(-)
+
 diff --git a/wrappers/Python/setup.py b/wrappers/Python/setup.py
-index 5c339c09..7a3e2a24 100644
+index 4eb13023e..c795af83d 100644
 --- a/wrappers/Python/setup.py
 +++ b/wrappers/Python/setup.py
-@@ -56,48 +56,6 @@ def recursive_collect_includes():
- 
+@@ -26,7 +26,7 @@ def copy2(old, new):
+     for jsonfile in glob.glob(os.path.join('CoolProp', 'include', '*_JSON_z.h')):
+         print('removing', jsonfile)
+         os.remove(jsonfile)
+-    copytree(os.path.join(CProot, 'externals/fmtlib/include/fmt'), os.path.join('CoolProp', 'include', 'fmt'))  # Should be deprecated
++    copytree(os.path.join(os.environ['PREFIX'], 'Library', 'include', 'fmt') if os.name == 'nt' else os.path.join(os.environ['PREFIX'], 'include', 'fmt'), os.path.join('CoolProp', 'include', 'fmt'))  # Should be deprecated
+     #copytree(os.path.join(CProot, 'externals/fmtlib/include/fmt'), os.path.join('CoolProp','include','fmt'))
+     copy2(os.path.join(CProot, 'CoolPropBibTeXLibrary.bib'), os.path.join('CoolProp', 'CoolPropBibTeXLibrary.bib'))
+     
+@@ -61,47 +61,6 @@ def recursive_collect_includes():
  
  if __name__ == '__main__':
--
+ 
 -    # #Handling the standard library for C++ on OSX
 -    #
 -    # This is mostly related to the compiler version, but since it is much
@@ -41,17 +58,17 @@ index 5c339c09..7a3e2a24 100644
 -
 -        # allow to override things manually
 -        if 'MACOSX_DEPLOYMENT_TARGET' not in os.environ:
--            if osx_version >= "10.14":
+-            if osx_version >= Version("10.14"):
 -                os.environ['MACOSX_DEPLOYMENT_TARGET'] = "10.9"
 -                print("Assuming that we cannot build for {0} on {1}, resetting target to {2}".format(osx_target, osx_version, os.environ['MACOSX_DEPLOYMENT_TARGET']))
--            if osx_compiler >= "10":
+-            if osx_compiler >= Version("10"):
 -                os.environ['MACOSX_DEPLOYMENT_TARGET'] = "10.9"
 -                print("Assuming that we cannot build for {0} using clang/gcc {1}, resetting target to {2}".format(osx_target, osx_compiler, os.environ['MACOSX_DEPLOYMENT_TARGET']))
 -
      # ******************************
      #       CMAKE OPTIONS
      # ******************************
-@@ -216,6 +174,9 @@ if __name__ == '__main__':
+@@ -220,6 +179,9 @@ def recursive_collect_includes():
                  cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
@@ -61,7 +78,7 @@ index 5c339c09..7a3e2a24 100644
          elif cmake_compiler == 'default':
              cmake_config_args = []
              if sys.platform.startswith('win'):
-@@ -226,7 +187,7 @@ if __name__ == '__main__':
+@@ -230,7 +192,7 @@ def recursive_collect_includes():
                  cmake_config_args += ['-DFORCE_BITNESS_64=ON']
              elif cmake_bitness == 'NATIVE':
                  cmake_config_args += ['-DFORCE_BITNESS_NATIVE=ON']
@@ -70,7 +87,7 @@ index 5c339c09..7a3e2a24 100644
                  pass
              else:
                  raise ValueError('cmake_bitness must be either 32 or 64; got ' + cmake_bitness)
-@@ -264,7 +225,7 @@ if __name__ == '__main__':
+@@ -268,7 +230,7 @@ def recursive_collect_includes():
  
          # Now find the static library that we just built
          static_libs = []
@@ -79,3 +96,12 @@ index 5c339c09..7a3e2a24 100644
              static_libs += glob.glob(os.path.join(cmake_build_dir, search_suffix))
  
          if len(static_libs) != 1:
+@@ -433,7 +395,7 @@ def find_cpp_sources(root=os.path.join('..', '..', 'src'), extensions=['.cpp'],
+         os.path.join(CProot, 'include'),
+         os.path.join(CProot, 'src'),
+         os.path.join(CProot, 'dev'),
+-        os.path.join(CProot, 'externals', 'Eigen'),
++        os.path.join(os.environ['PREFIX'], 'Library', 'include', 'eigen3') if os.name == 'nt' else os.path.join(os.environ['PREFIX'], 'include', 'eigen3'),
+         # os.path.join(CProot, 'externals', 'fmtlib'),  # should be deprecated
+         os.path.join(CProot, 'externals', 'fmtlib', 'include'),
+         os.path.join(CProot, 'boost_CoolProp'),

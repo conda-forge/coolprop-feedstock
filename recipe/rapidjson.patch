@@ -1,0 +1,32 @@
+From 5c2e7b8a939ddef2c01222f8ed38a1b11c9178ee Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Fri, 30 May 2025 10:13:45 +0200
+Subject: [PATCH] Update rapidjson_include.h
+
+---
+ include/rapidjson_include.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/include/rapidjson_include.h b/include/rapidjson_include.h
+index 39a4c2676..6f9310698 100644
+--- a/include/rapidjson_include.h
++++ b/include/rapidjson_include.h
+@@ -11,12 +11,12 @@ typedef unsigned int UINT32;
+ #include "Exceptions.h"
+ #include "CoolPropTools.h"
+ 
+-#include "externals/rapidjson/include/rapidjson/rapidjson.h"
+-#include "externals/rapidjson/include/rapidjson/document.h"
+-#include "externals/rapidjson/include/rapidjson/filewritestream.h"  // wrapper of C stream for prettywriter as output
+-#include "externals/rapidjson/include/rapidjson/prettywriter.h"     // for stringify JSON
+-#include "externals/rapidjson/include/rapidjson/stringbuffer.h"     // for string buffer
+-#include "externals/rapidjson/include/rapidjson/schema.h"
++#include "rapidjson/rapidjson.h"
++#include "rapidjson/document.h"
++#include "rapidjson/filewritestream.h"  // wrapper of C stream for prettywriter as output
++#include "rapidjson/prettywriter.h"     // for stringify JSON
++#include "rapidjson/stringbuffer.h"     // for string buffer
++#include "rapidjson/schema.h"
+ 
+ #include <cassert>
+ 
