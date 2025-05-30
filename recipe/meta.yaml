@@ -1,8 +1,8 @@
 {% set name = "CoolProp" %}
 
 # WARNING external resources may need update as well
-{% set version = "6.7.0" %}
-{% set sha256 = "7a014b74d95da8b00bc30e61546398fd6d5c7f65066a092fb15efb7b17d3b76c" %}
+{% set version = "6.8.0" %}
+{% set sha256 = "80d5fd7b6887af22d839a96946c9f758dd78b311af8d599c102ea1beea0e29d3" %}
 
 package:
   name: {{ name|lower }}
@@ -26,7 +26,7 @@ source:
     folder: externals/REFPROP-headers
 
 build:
-  number: 2
+  number: 0
   # pypy is not passing and we don't want to support it
   skip: true  # [python_impl == 'pypy']
 
