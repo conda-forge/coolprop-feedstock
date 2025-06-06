@@ -1,8 +1,8 @@
 {% set name = "CoolProp" %}
 
 # WARNING external resources may need update as well
-{% set version = "6.7.0" %}
-{% set sha256 = "7a014b74d95da8b00bc30e61546398fd6d5c7f65066a092fb15efb7b17d3b76c" %}
+{% set version = "6.8.0" %}
+{% set sha256 = "80d5fd7b6887af22d839a96946c9f758dd78b311af8d599c102ea1beea0e29d3" %}
 
 package:
   name: {{ name|lower }}
@@ -13,20 +13,18 @@ source:
     sha256: {{ sha256 }}
     patches:
       - setup.patch
-      - eigen.patch
-      - fmt.patch
       - rapidjson.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
-  - url: https://github.com/CoolProp/IF97/archive/a103894253ccd5144050eaeb8f7276379b9e5d9d.tar.gz
-    sha256: 82af3e67fefaaa648d0a1550aac2f3c9dce054e7e0f28b3164ce6a30001f7938
+  - url: https://github.com/CoolProp/IF97/archive/3ddd548f87f55db921a490ae4facb36162497009.tar.gz
+    sha256: ba2ac3ffe69fc0045424eddc492b1a18041e45fefdcfaf6ea1f6ae9abc72cba8
     folder: externals/IF97
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
     folder: externals/REFPROP-headers
 
 build:
-  number: 2
+  number: 0
   # pypy is not passing and we don't want to support it
   skip: true  # [python_impl == 'pypy']
 
