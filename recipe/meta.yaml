@@ -13,35 +13,20 @@ source:
     sha256: {{ sha256 }}
     patches:
       - setup.patch
+      - eigen.patch
+      - fmt.patch
+      - rapidjson.patch
   # External dependencies
   # See https://github.com/CoolProp/CoolProp/tree/master/externals
-  - url: https://github.com/catchorg/Catch2/archive/v3.0.0-preview4.tar.gz
-    sha256: 2458d47d923b65ab611656cb7669d1810bcc4faa62e4c054a7405b1914cd4aee
-    folder: externals/Catch2
-  - url: https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz
-    sha256: 992855522dfdd0dea74d903dcd082cdb01c1ae72be5145e2fe646a0892989e43
-    folder: externals/Eigen
   - url: https://github.com/CoolProp/IF97/archive/a103894253ccd5144050eaeb8f7276379b9e5d9d.tar.gz
     sha256: 82af3e67fefaaa648d0a1550aac2f3c9dce054e7e0f28b3164ce6a30001f7938
     folder: externals/IF97
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
     folder: externals/REFPROP-headers
-  - url: https://github.com/fmtlib/fmt/archive/10.0.0.tar.gz
-    sha256: ede1b6b42188163a3f2e0f25ad5c0637eca564bd8df74d02e31a311dd6b37ad8
-    folder: externals/fmtlib
-  - url: https://github.com/msgpack/msgpack-c/archive/cpp-7.0.0.tar.gz
-    sha256: 070881ebea9208cf7e731fd5a46a11404025b2f260ab9527e32dfcb7c689fbfc
-    folder: externals/msgpack-c
-  - url: https://github.com/pybind/pybind11/archive/v2.2.3.tar.gz
-    sha256: 3a3b7b651afab1c5ba557f4c37d785a522b8030dfc765da26adc2ecd1de940ea
-    folder: externals/pybind11
-  - url: https://github.com/Tencent/rapidjson/archive/73063f5002612c6bf64fe24f851cd5cc0d83eef9.zip
-    sha256: 013edcc40afd7a550899e443ac70bc16b6a36867393be50f1def35674e2be08c
-    folder: externals/rapidjson
 
 build:
-  number: 1
+  number: 2
   # pypy is not passing and we don't want to support it
   skip: true  # [python_impl == 'pypy']
 
@@ -61,6 +46,12 @@ requirements:
     - cython
     - setuptools
     - pip
+    - catch2
+    - eigen
+    - fmt =10.2.1
+    - msgpack-c
+    - msgpack-cxx
+    - rapidjson
   run:
     - python
     - numpy
@@ -89,3 +80,4 @@ extra:
   recipe-maintainers:
     - danilomendesdias
     - fcollonval
+    - jan-janssen
