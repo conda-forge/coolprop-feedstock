@@ -27,25 +27,23 @@ source:
 
 build:
   # pypy is not passing and we don't want to support it
-  number: 3
+  number: 4
   skip: python_impl == 'pypy'
 
 requirements:
   build:
     - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
-    - if: build_platform != target_platform
-      then: cython
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - cython
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
     - cmake
     - if: not win
       then: make
-    - if: win
-      then: ninja
+      else: ninja
   host:
     - python
     - cython
