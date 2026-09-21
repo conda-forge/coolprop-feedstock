@@ -3,8 +3,8 @@ schema_version: 1
 
 context:
   name: CoolProp
-  version: "7.1.0"
-  sha256: 38cc65541d9540e5251c255e9a1aac8062d51e8db42d9dbcb0007f904f8d8160
+  version: "8.0.0"
+  sha256: 026593c69ce8c9c014d9eac4d07d0b5c9058442742399562b6cdd6ce322f7f89
 
 package:
   name: ${{ name|lower }}
@@ -27,7 +27,7 @@ source:
 
 build:
   # pypy is not passing and we don't want to support it
-  number: 4
+  number: 0
   skip: python_impl == 'pypy'
 
 requirements:
