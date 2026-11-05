@@ -1,33 +1,35 @@
-# WARNING external resources may need update as well
+# Keep external source revisions in sync with upstream cmake/dependencies.cmake.
 schema_version: 1
 
 context:
   name: CoolProp
-  version: "7.1.0"
-  sha256: 38cc65541d9540e5251c255e9a1aac8062d51e8db42d9dbcb0007f904f8d8160
+  version: "8.0.0"
+  sha256: 026593c69ce8c9c014d9eac4d07d0b5c9058442742399562b6cdd6ce322f7f89
 
 package:
-  name: ${{ name|lower }}
+  name: coolprop
   version: ${{ version }}
 
 source:
   - url: https://github.com/CoolProp/${{ name }}/archive/v${{ version }}.tar.gz
     sha256: ${{ sha256 }}
     patches:
-      - setup.patch
-      - rapidjson.patch
+      - conda-dependencies.patch
   # External dependencies
-  # See https://github.com/CoolProp/CoolProp/tree/master/externals
-  - url: https://github.com/CoolProp/IF97/archive/3ddd548f87f55db921a490ae4facb36162497009.tar.gz
-    sha256: ba2ac3ffe69fc0045424eddc492b1a18041e45fefdcfaf6ea1f6ae9abc72cba8
+  # These headers are not available as conda packages on every target platform.
+  - url: https://github.com/CoolProp/IF97/archive/7aaced024a702f0985474bf293cdaae9c8d06521.tar.gz
+    sha256: f62207a854293b1814f2619477d71e17ffaf04cf448c2bd79d173336eb4d36f6
     target_directory: externals/IF97
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
     target_directory: externals/REFPROP-headers
+  - url: https://github.com/tristanpenman/valijson/archive/refs/tags/v1.0.6.tar.gz
+    sha256: bf0839de19510ff7792d8a8aca94ea11a288775726b36c4c9a2662651870f8da
+    target_directory: externals/valijson
 
 build:
   # pypy is not passing and we don't want to support it
-  number: 4
+  number: 0
   skip: python_impl == 'pypy'
 
 requirements:
@@ -36,25 +38,25 @@ requirements:
       then:
         - python
         - cross-python_${{ target_platform }}
-        - cython
+        - cython >=3.1
+        - nanobind ==2.12.0
+        - scikit-build-core >=0.10
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
-    - cmake
-    - if: not win
-      then: make
-      else: ninja
+    - cmake >=3.15
+    - ninja
   host:
     - python
-    - cython
-    - setuptools
+    - cython >=3.1
+    - nanobind ==2.12.0
+    - scikit-build-core >=0.10
     - pip
-    - catch2
-    - eigen
-    - fmt =10.2.1
-    - msgpack-c
+    - eigen >=5.0.1
+    - fmt >=12.0.0
+    - libboost-headers
     - msgpack-cxx
-    - rapidjson
+    - nlohmann_json >=3.12.0
   run:
     - python
     - numpy
@@ -64,11 +66,17 @@ tests:
   - python:
       imports:
         - CoolProp
+        - CoolProp.State
         - CoolProp.tests
         - if: not match(python, ">=2,<3") or not linux
           then: CoolProp.Plots
         - CoolProp.GUI
       pip_check: false
+  - script:
+      - python -c "import CoolProp; assert CoolProp.__version__ == '${{ version }}'"
+      - python -c "from CoolProp.CoolProp import PropsSI; assert abs(PropsSI('T', 'P', 101325, 'Q', 0, 'Water') - 373.1243) < 0.001"
+      - python -c "from CoolProp.CoolProp import AbstractState, PT_INPUTS; s = AbstractState('HEOS', 'Water'); s.update(PT_INPUTS, 101325, 300); assert abs(s.rhomass() - 996.5569) < 0.001"
+      - python -c "from CoolProp.CoolProp import HAPropsSI; assert 0 < HAPropsSI('W', 'T', 300, 'P', 101325, 'R', 0.5) < 0.1"
 
 about:
   license: MIT
