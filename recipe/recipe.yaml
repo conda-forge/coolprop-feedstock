@@ -29,7 +29,7 @@ source:
 
 build:
   # pypy is not passing and we don't want to support it
-  number: 0
+  number: 1
   skip: python_impl == 'pypy'
 
 requirements:
