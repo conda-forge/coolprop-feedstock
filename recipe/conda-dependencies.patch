@@ -1,0 +1,41 @@
+Use conda's header dependencies and the recipe's pinned external sources instead
+of downloading dependencies with CPM during CMake configuration.
+Create the Cython output directory before generating extension sources in a
+clean build tree.
+
+--- a/wrappers/Python/CMakeLists.txt
++++ b/wrappers/Python/CMakeLists.txt
+@@ -47,9 +47,21 @@
+ # Set root directory
+ set(ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+ 
+-# Use CPM.cmake for dependency management (consistent with the main build)
+-include("${ROOT_DIR}/cmake/CPM.cmake")
+-include("${ROOT_DIR}/cmake/dependencies.cmake")
++# Header-only dependencies are supplied by the conda host environment.
++if(WIN32)
++    set(CONDA_HEADER_PREFIX "$ENV{LIBRARY_PREFIX}")
++else()
++    set(CONDA_HEADER_PREFIX "$ENV{PREFIX}")
++endif()
++string(REPLACE "\\" "/" CONDA_HEADER_PREFIX "${CONDA_HEADER_PREFIX}")
++set(Eigen_SOURCE_DIR "${CONDA_HEADER_PREFIX}/include/eigen3")
++set(boost_headers_SOURCE_DIR "${CONDA_HEADER_PREFIX}/include")
++foreach(dep fmt nlohmann_json msgpack-c)
++    set(${dep}_SOURCE_DIR "${CONDA_HEADER_PREFIX}")
++endforeach()
++set(IF97_SOURCE_DIR "${ROOT_DIR}/externals/IF97")
++set(REFPROP_headers_SOURCE_DIR "${ROOT_DIR}/externals/REFPROP-headers")
++set(valijson_SOURCE_DIR "${ROOT_DIR}/externals/valijson")
+ 
+ list(APPEND CMAKE_MODULE_PATH "${ROOT_DIR}/cmake")
+ include(CoolPropJSONVisibility)
+@@ -156,6 +168,8 @@
+ target_include_directories(miniz PUBLIC "${ROOT_DIR}/externals/miniz-3.1.1")
+ 
+ # Cythonize the .pyx files
++file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/CoolProp")
++
+ set(CYTHON_FLAGS
+     --cplus
+     --directive embedsignature=True
