@@ -16,9 +16,12 @@ source:
     patches:
       - conda-dependencies.patch
   # External dependencies
-  # These headers are not available as conda packages on every target platform.
-  - url: https://github.com/CoolProp/IF97/archive/7aaced024a702f0985474bf293cdaae9c8d06521.tar.gz
-    sha256: f62207a854293b1814f2619477d71e17ffaf04cf448c2bd79d173336eb4d36f6
+  # These sources/headers are not available as complete conda packages on every target platform.
+  - url: https://github.com/CoolProp/boost-headers/archive/bb87178a4c27171ed91bfa9f314c0a71a8abcb8f.tar.gz
+    sha256: 66626318b87e3fc01de723ef0463ccdf658d9caf9d0b962a6fa282ff2a63b741
+    target_directory: externals/boost-headers
+  - url: https://github.com/CoolProp/IF97/archive/50b6559a7dd91e5b88fd681b86ba52f221ef40c3.tar.gz
+    sha256: b977fad9dba7cb474ea82ad5415a25952373a0420ab1805a032ee671632d91fb
     target_directory: externals/IF97
   - url: https://github.com/CoolProp/REFPROP-headers/archive/b4faab1b73911c32c4b69c526c7e92f74edb67de.zip
     sha256: a98351b3618e0f9f5dc95da219feaf55d029b5f5b961fdfb8262ad3e7e6e89a7
@@ -54,12 +57,11 @@ requirements:
     - pip
     - eigen >=5.0.1
     - fmt >=12.0.0
-    - libboost-headers
     - msgpack-cxx
     - nlohmann_json >=3.12.0
   run:
     - python
-    - numpy
+    - numpy >=1.20
     - matplotlib-base
 
 tests:
@@ -70,7 +72,6 @@ tests:
         - CoolProp.tests
         - if: not match(python, ">=2,<3") or not linux
           then: CoolProp.Plots
-        - CoolProp.GUI
       pip_check: false
   - script:
       - python -c "import CoolProp; assert CoolProp.__version__ == '${{ version }}'"
