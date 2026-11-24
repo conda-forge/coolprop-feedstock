@@ -5,7 +5,7 @@ clean build tree.
 
 --- a/wrappers/Python/CMakeLists.txt
 +++ b/wrappers/Python/CMakeLists.txt
-@@ -47,9 +47,21 @@
+@@ -47,9 +47,23 @@
  # Set root directory
  set(ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../..")
  
@@ -19,11 +19,13 @@ clean build tree.
 +    set(CONDA_HEADER_PREFIX "$ENV{PREFIX}")
 +endif()
 +string(REPLACE "\\" "/" CONDA_HEADER_PREFIX "${CONDA_HEADER_PREFIX}")
-+set(Eigen_SOURCE_DIR "${CONDA_HEADER_PREFIX}/include/eigen3")
-+set(boost_headers_SOURCE_DIR "${CONDA_HEADER_PREFIX}/include")
-+foreach(dep fmt nlohmann_json msgpack-c)
++set(COOLPROP_VENDOR_THIRD_PARTY OFF)
++set(COOLPROP_EIGEN_INCLUDE_DIRS "${CONDA_HEADER_PREFIX}/include/eigen3")
++set(COOLPROP_FMT_INCLUDE_DIRS "${CONDA_HEADER_PREFIX}/include")
++foreach(dep nlohmann_json msgpack-c)
 +    set(${dep}_SOURCE_DIR "${CONDA_HEADER_PREFIX}")
 +endforeach()
++set(boost_headers_SOURCE_DIR "${ROOT_DIR}/externals/boost-headers")
 +set(IF97_SOURCE_DIR "${ROOT_DIR}/externals/IF97")
 +set(REFPROP_headers_SOURCE_DIR "${ROOT_DIR}/externals/REFPROP-headers")
 +set(valijson_SOURCE_DIR "${ROOT_DIR}/externals/valijson")
